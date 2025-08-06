@@ -17,8 +17,7 @@ ENV NODE_ENV="production"
 FROM base AS build
 
 # Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+RUN apt-get update -qq
 
 # Install node modules
 COPY package-lock.json package.json ./
@@ -35,11 +34,8 @@ RUN npm prune --omit=dev
 
 
 # Final stage for app image
-FROM base
+FROM pierrezemb/gostatic
 
-# Copy built application
-COPY --from=build /app /app
+COPY public/ /srv/http/
 
-# Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+CMD ["-port","3000","-https-promote", "-enable-logging"]
