@@ -1,5 +1,5 @@
 FROM pierrezemb/gostatic
 
-COPY public/ /srv/http/
+COPY ./build/ /srv/http/
 
 CMD ["-port","3000","-https-promote", "-enable-logging"]
