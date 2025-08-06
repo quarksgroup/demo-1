@@ -148,7 +148,6 @@ vite.config.ts.timestamp-*
 /coverage
 
 # production
-/build
 
 # misc
 .DS_Store
