@@ -6,7 +6,9 @@ app_name = "demo-1"
 
 app {
 
-  env = {}
+  env = {
+    HOST = "::"
+  }
 
   port = 3000
 
